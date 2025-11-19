@@ -1,9 +1,14 @@
 @import "tailwindcss";
 
-@theme {
-  --spacing: 0.25rem;
-  --color-primary: #333;
-  --color-primary-foreground: #a38d6d;
+@theme inline {
+  --spacing: 4px;
+  --color-main: #0f304d;
+  --color-main-foreground: #e2e2e2;
+  --color-main-border: #4c4c7d;
+  --color-main-hover: #133d62;
+
+  --color-secondary: #1e2124;
+  --color-secondary-hover: #2d3136;
   /* --color-primary: #000; */
   /* --color-primary-foreground: #fff8e1; */
 
@@ -13,6 +18,8 @@
   --color-seconary-foreground: #e9cf9f;
 
   --animate-spin-slow: spin 20s linear infinite;
+  --default-font-family: FontinSmallCaps, Verdana, Arial, Helvetica, sans-serif;
+  --font-sans: FontinSmallCaps, Verdana, Arial, Helvetica, sans-serif;
 }
 
 .your-class {
