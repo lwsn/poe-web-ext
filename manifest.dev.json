@@ -8,12 +8,13 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [
-        "contentStyle.css",
-        "dev-icon-128.png",
-        "dev-icon-32.png"
-      ],
+      "resources": ["contentStyle.css", "dev-icon-128.png", "dev-icon-32.png"],
       "matches": []
     }
-  ]
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "test@example.org"
+    }
+  }
 }
