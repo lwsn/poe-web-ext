@@ -10,12 +10,14 @@ export type Folder = {
 
 export const useFolders = () => {
   const [value, setValue] = useStorage<Folder[]>("folders", (p) => p ?? []);
+  const [, setDefaultFolder] = useStorage("defaultFolder");
   const { removeMany } = useItems();
 
   const add = useCallback(
     async (name: string) => {
       const id = Date.now().toString();
       await setValue((p = []) => [...p, { id, name }]);
+      await setDefaultFolder(id);
       return id;
     },
     [setValue],

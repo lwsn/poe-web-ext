@@ -22,7 +22,7 @@ export const useItems = (folderId?: string) => {
       const id = Date.now().toString();
 
       await setValue((p = []) => [...p, { folderId, param, name, id }]);
-      setDefaultFolder(folderId);
+      await setDefaultFolder(folderId);
       return id;
     },
     [setValue, setDefaultFolder],
