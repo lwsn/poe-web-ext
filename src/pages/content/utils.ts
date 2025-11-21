@@ -40,3 +40,12 @@ export const getCurrentLeague = () => {
   const leagues = getLeagues();
   return leagues?.length ? getLeagues()[0] : undefined;
 };
+
+export const getTradeParam = () => {
+  const [tradeLit, searchLit, league, param] = window.location.pathname
+    .split("/")
+    .filter(Boolean);
+  if (tradeLit !== "trade" || searchLit !== "search" || !league || !param)
+    return null;
+  return param;
+};

@@ -13,10 +13,10 @@ export const useFolders = () => {
   const { removeMany } = useItems();
 
   const add = useCallback(
-    (name: string) => {
+    async (name: string) => {
       const id = Date.now().toString();
-
-      return setValue((p = []) => [...p, { id, name }]);
+      await setValue((p = []) => [...p, { id, name }]);
+      return id;
     },
     [setValue],
   );

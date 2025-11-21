@@ -4,12 +4,13 @@ import { useCallback, useMemo } from "react";
 export type Trade = {
   id: string;
   folderId: string;
-  url: string;
+  param: string;
   name: string;
 };
 
 export const useItems = (folderId?: string) => {
   const [_value, setValue] = useStorage<Trade[]>("trades", (p) => p ?? []);
+  const [, setDefaultFolder] = useStorage("defaultFolder");
 
   const value = useMemo(
     () => (folderId ? _value.filter((v) => v.folderId === folderId) : _value),
@@ -17,23 +18,25 @@ export const useItems = (folderId?: string) => {
   );
 
   const add = useCallback(
-    ({ folderId, url, name }: Omit<Trade, "id">) => {
+    async ({ folderId, param, name }: Omit<Trade, "id">) => {
       const id = Date.now().toString();
 
-      return setValue((p = []) => [...p, { folderId, url, name, id }]);
+      await setValue((p = []) => [...p, { folderId, param, name, id }]);
+      setDefaultFolder(folderId);
+      return id;
     },
-    [setValue],
+    [setValue, setDefaultFolder],
   );
 
   const edit = useCallback(
-    (id: string, { folderId, url, name }: Partial<Omit<Trade, "id">>) =>
+    (id: string, { folderId, param, name }: Partial<Omit<Trade, "id">>) =>
       setValue((p = []) =>
         p.map((v) =>
           v.id === id
             ? {
                 id,
                 folderId: folderId ?? v.folderId,
-                url: url ?? v.url,
+                param: param ?? v.param,
                 name: name ?? v.name,
               }
             : v,
